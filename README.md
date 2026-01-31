@@ -33,7 +33,7 @@ This project implements a Deep Reinforcement Learning (TD3) agent for autonomous
 pkill gzserver
 pkill gzclient
 ```
-### Terminal 1 - Gazebo server
+### Terminal 1 - (Gazebo server + ROS bridge)
 ```bash
 source /opt/ros/humble/setup.bash
 export GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib
@@ -48,7 +48,7 @@ gzserver ~/tb3_project_ws/worlds/maze_world.world \
 source /opt/ros/humble/setup.bash
 gzclient
 ```
-### Terminal 3 - Verify ROS services
+### Terminal 3 - (Gazebo bridge check + ROS)
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 service list | grep spawn
@@ -59,7 +59,7 @@ source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle
 ros2 launch turtlebot3_gazebo spawn_turtlebot3.launch.py
 ```
-### Terminal 5 - Check camera topics
+### Terminal 5 - (Camera topic check)
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 topic list | grep image
@@ -71,7 +71,7 @@ cd ~/tb3_project_ws
 source install/setup.bash
 ros2 run tb3_vision_maze vision_node
 ```
-### Terminal 7 - Vision Monitort
+### Terminal 7 - (Vision output check)
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 topic echo /maze_state
@@ -83,7 +83,7 @@ cd ~/tb3_project_ws
 source install/setup.bash
 ros2 run tb3_vision_maze planner_node
 ```
-### Terminal 9 - Planner Monitor
+### Terminal 9 - (Planner output check)
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 topic echo /planner_cmd
