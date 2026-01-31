@@ -1,5 +1,4 @@
-1. Project Name: Vision-Based Maze Solving TurtleBot with AI Path
-Planning
+1. Project Name: Vision-Based Maze Solving TurtleBot with AI Path Planning
 
 2. Abstract
 Abstract—Autonomous navigation within unstructured and previously unmapped environments remains a foundational challenge in the field of mobile robotics. While classical path-planning
@@ -12,6 +11,7 @@ results conducted within a high-fidelity Gazebo simulation indicate that this hy
 trajectory smoothness compared to baseline Deep Deterministic Policy Gradient (DDPG) agents. The system achieved a 100% mission termination success rate upon visual goal recognition,
 validating the efficacy of symbolic supervision in reinforcement learning tasks.
 Index Terms—Deep Reinforcement Learning, TD3, ROS2,Symbolic Reasoning, Computer Vision, Autonomous Navigation, Sim-to-Real.
+Repository Link: https://github.com/Alasadi85/tb3-vision-maze-project 
 
 3. Vision Module
 
@@ -48,57 +48,67 @@ sudo apt-get install ros-noetic-vision-opencv
 sudo apt-get install ros-noetic-turtlebot3-*
 
 2. Simulation Mode (Gazebo)
+
 Terminal 0
 pkill gzserver
 pkill gzclient
 
 Terminal 1 (Gazebo Server Maze + ROS bridge)
+
 source /opt/ros/humble/setup.bash
 export GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib
 export GAZEBO_MODEL_PATH=/opt/ros/humble/share/turtlebot3_gazebo/models
-
 gzserver ~/tb3_project_ws/worlds/maze_world.world \
   -s libgazebo_ros_init.so \
   -s libgazebo_ros_factory.so
 
 Terminal 2 (Gazebo GUI)
+
 source /opt/ros/humble/setup.bash
 gzclient
 
 Terminal 3 (Gazebo bridge check + ROS)
+
 source /opt/ros/humble/setup.bash
 ros2 service list | grep spawn
 
 Terminal 4 (Spawn TurtleBot3)
+
 source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle
 ros2 launch turtlebot3_gazebo spawn_turtlebot3.launch.py
 
 Terminal 5 (Camera topic check)
+
 source /opt/ros/humble/setup.bash
 ros2 topic list | grep image
 
 Terminal 6 (Vision node)
+
 source /opt/ros/humble/setup.bash
 cd ~/tb3_project_ws
 source install/setup.bash
 ros2 run tb3_vision_maze vision_node
 
 Terminal 7 (Vision output check)
+
 source /opt/ros/humble/setup.bash
 ros2 topic echo /maze_state
 
 Terminal 8 (Planner node)
+
 source /opt/ros/humble/setup.bash
 cd ~/tb3_project_ws
 source install/setup.bash
 ros2 run tb3_vision_maze planner_node
 
 Terminal 9 (Planner output check)
+
 source /opt/ros/humble/setup.bash
 ros2 topic echo /planner_cmd
 
 Terminal 10 (Motion node)
+
 source /opt/ros/humble/setup.bash
 cd ~/tb3_project_ws
 
