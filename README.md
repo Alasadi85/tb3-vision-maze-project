@@ -42,7 +42,7 @@ sudo apt-get install ros-noetic-desktop-full
 pip install numpy opencv-python scikit-image matplotlib
 pip install pillow scipy networkx
 
-# ROS packages
+# ROS Package
 sudo apt-get install ros-noetic-navigation
 sudo apt-get install ros-noetic-vision-opencv
 sudo apt-get install ros-noetic-turtlebot3-*
