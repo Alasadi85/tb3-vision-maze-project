@@ -26,43 +26,64 @@ This project implements a Deep Reinforcement Learning (TD3) agent for autonomous
 
 # 🚀 TurtleBot3 Maze Navigation - Complete Setup Guide
 
-## 📋 Prerequisites
-- Ubuntu 22.04
-- ROS 2 Humble
-- TurtleBot3 packages
-- Gazebo
-
 ## 🖥️ Terminal Setup (11 Terminals Required)
 
-| Terminal | Purpose | Command to Copy |
-|----------|---------|-----------------|
-| **Terminal 0** | Cleanup | `pkill gzserver`<br>`pkill gzclient` |
-| **Terminal 1** | Gazebo Server | ```bash<br>source /opt/ros/humble/setup.bash<br>export GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib<br>export GAZEBO_MODEL_PATH=/opt/ros/humble/share/turtlebot3_gazebo/models<br><br>gzserver ~/tb3_project_ws/worlds/maze_world.world \<br>  -s libgazebo_ros_init.so \<br>  -s libgazebo_ros_factory.so<br>``` |
-| **Terminal 2** | Gazebo GUI | ```bash<br>source /opt/ros/humble/setup.bash<br>gzclient<br>``` |
-| **Terminal 3** | ROS Service Check | ```bash<br>source /opt/ros/humble/setup.bash<br>ros2 service list | grep spawn<br>``` |
-| **Terminal 4** | Spawn Robot | ```bash<br>source /opt/ros/humble/setup.bash<br>export TURTLEBOT3_MODEL=waffle<br>ros2 launch turtlebot3_gazebo spawn_turtlebot3.launch.py<br>``` |
-| **Terminal 5** | Camera Check | ```bash<br>source /opt/ros/humble/setup.bash<br>ros2 topic list | grep image<br>``` |
-| **Terminal 6** | Vision Node | ```bash<br>source /opt/ros/humble/setup.bash<br>cd ~/tb3_project_ws<br>source install/setup.bash<br>ros2 run tb3_vision_maze vision_node<br>``` |
-| **Terminal 7** | Vision Monitor | ```bash<br>source /opt/ros/humble/setup.bash<br>ros2 topic echo /maze_state<br>``` |
-| **Terminal 8** | Planner Node | ```bash<br>source /opt/ros/humble/setup.bash<br>cd ~/tb3_project_ws<br>source install/setup.bash<br>ros2 run tb3_vision_maze planner_node<br>``` |
-| **Terminal 9** | Planner Monitor | ```bash<br>source /opt/ros/humble/setup.bash<br>ros2 topic echo /planner_cmd<br>``` |
-| **Terminal 10** | Motion Node | ```bash<br>source /opt/ros/humble/setup.bash<br>cd ~/tb3_project_ws<br>source install/setup.bash<br>ros2 run tb3_vision_maze motion_node<br>``` |
+### Terminal 0 - Cleanup
+pkill gzserver
+pkill gzclient
 
-## 🔄 Execution Order
-1. **Terminal 0** → Cleanup
-2. **Terminal 1** → Gazebo server
-3. **Terminal 2** → Gazebo GUI
-4. **Terminal 3** → Verify ROS services
-5. **Terminal 4** → Spawn robot
-6. **Terminal 5** → Check camera topics
-7. **Terminal 6** → Start vision node
-8. **Terminal 7** → Monitor vision output
-9. **Terminal 8** → Start planner node
-10. **Terminal 9** → Monitor planner commands
-11. **Terminal 10** → Start motion node
+### Terminal 1 - Gazebo server
+source /opt/ros/humble/setup.bash
+export GAZEBO_PLUGIN_PATH=/opt/ros/humble/lib
+export GAZEBO_MODEL_PATH=/opt/ros/humble/share/turtlebot3_gazebo/models
 
-## 📊 System Architecture
+gzserver ~/tb3_project_ws/worlds/maze_world.world \
+  -s libgazebo_ros_init.so \
+  -s libgazebo_ros_factory.so
+
+### Terminal 2 - Gazebo GUI
+source /opt/ros/humble/setup.bash
+gzclient
+
+### Terminal 3 - Verify ROS services
+source /opt/ros/humble/setup.bash
+ros2 service list | grep spawn
+
+### Terminal 4 - Spawn robot
+source /opt/ros/humble/setup.bash
+export TURTLEBOT3_MODEL=waffle
+ros2 launch turtlebot3_gazebo spawn_turtlebot3.launch.py
+
+### Terminal 5 - Check camera topics
+source /opt/ros/humble/setup.bash
+ros2 topic list | grep image
+
+### Terminal 6 - Start vision node
+source /opt/ros/humble/setup.bash
+cd ~/tb3_project_ws
+source install/setup.bash
+ros2 run tb3_vision_maze vision_node
+
+### Terminal 7 - Vision Monitort
+source /opt/ros/humble/setup.bash
+ros2 topic echo /maze_state
+
+### Terminal 8 - Planner Node
+source /opt/ros/humble/setup.bash
+cd ~/tb3_project_ws
+source install/setup.bash
+ros2 run tb3_vision_maze planner_node
+
+### Terminal 9 - Planner Monitor
+source /opt/ros/humble/setup.bash
+ros2 topic echo /planner_cmd
+
+### Terminal 10 - Motion Node
+source /opt/ros/humble/setup.bash
+cd ~/tb3_project_ws
+source install/setup.bash
 ros2 run tb3_vision_maze motion_node
+
 
 ## Usage
 
