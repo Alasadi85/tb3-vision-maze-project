@@ -28,7 +28,6 @@ setup(
         'motion_node = tb3_vision_maze.motion_node:main',
         'planner_node = tb3_vision_maze.planner_node:main',
         'vision_node = tb3_vision_maze.vision_node:main',
-        'train_node = tb3_vision_maze.train_node:main',
     ],
     },
 )
